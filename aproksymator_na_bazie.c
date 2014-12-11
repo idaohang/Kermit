@@ -132,14 +132,14 @@ double xfi(double a, double b, int n, int i, FILE *out) {
 
 void make_spl(points_t * pts, spline_t * spl) {
 
-	matrix_t       *eqs= NULL;
-	double         *x = pts->x;
-	double         *y = pts->y;
-	double		a = x[0];
-	double		b = x[pts->n - 1];
-	int		i, j, k;
-	int		nb = pts->n - 3 > 10 ? 10 : pts->n - 3;
-  char *nbEnv= getenv( "APPROX_BASE_SIZE" );
+	matrix_t *eqs= NULL;
+	double   *x = pts->x;
+	double 	 *y = pts->y;
+	double	 a = x[0];
+	double	 b = x[pts->n - 1];
+	int		 i, j, k;
+	int 	 nb = pts->n - 3 > 10 ? 10 : pts->n - 3;
+	char *nbEnv= getenv( "APPROX_BASE_SIZE" );
 
 	if( nbEnv != NULL && atoi( nbEnv ) > 0 )
 		nb = atoi( nbEnv );
@@ -149,12 +149,15 @@ void make_spl(points_t * pts, spline_t * spl) {
 #ifdef DEBUG
 #define TESTBASE 500
 	{
-		FILE           *tst = fopen("debug_base_plot.txt", "w");
-		double		dx = (b - a) / (TESTBASE - 1);
+		FILE    *tst = fopen("debug_base_plot.txt", "w");
+		double	dx = (b - a) / (TESTBASE - 1);
+		
 		for( j= 0; j < nb; j++ )
 			xfi( a, b, nb, j, tst );
+		
 		for (i = 0; i < TESTBASE; i++) {
 			fprintf(tst, "%g", a + i * dx);
+			
 			for (j = 0; j < nb; j++) {
 				fprintf(tst, " %g", fi  (a, b, nb, j, a + i * dx));
 				fprintf(tst, " %g", dfi (a, b, nb, j, a + i * dx));
@@ -168,6 +171,7 @@ void make_spl(points_t * pts, spline_t * spl) {
 #endif
 
 	for (j = 0; j < nb; j++) {
+		
 		for (i = 0; i < nb; i++)
 			for (k = 0; k < pts->n; k++)
 				add_to_entry_matrix(eqs, j, i, fi(a, b, nb, i, x[k]) * fi(a, b, nb, j, x[k]));
@@ -184,6 +188,7 @@ void make_spl(points_t * pts, spline_t * spl) {
 		spl->n = 0;
 		return;
 	}
+	
 #ifdef DEBUG
 	write_matrix(eqs, stdout);
 #endif
@@ -196,6 +201,7 @@ void make_spl(points_t * pts, spline_t * spl) {
 			spl->f1[i] = 0;
 			spl->f2[i] = 0;
 			spl->f3[i] = 0;
+			
 			for (k = 0; k < nb; k++) {
 				double		ck = get_entry_matrix(eqs, k, nb);
 				spl->f[i]  += ck * fi  (a, b, nb, k, xx);
@@ -208,14 +214,15 @@ void make_spl(points_t * pts, spline_t * spl) {
 
 #ifdef DEBUG
 	{
-		FILE           *tst = fopen("debug_spline_plot.txt", "w");
-		double		dx = (b - a) / (TESTBASE - 1);
+		FILE    *tst = fopen("debug_spline_plot.txt", "w");
+		double	dx = (b - a) / (TESTBASE - 1);
 		for (i = 0; i < TESTBASE; i++) {
 			double yi= 0;
 			double dyi= 0;
 			double d2yi= 0;
 			double d3yi= 0;
 			double xi= a + i * dx;
+			
 			for( k= 0; k < nb; k++ ) {
 							yi += get_entry_matrix(eqs, k, nb) * fi(a, b, nb, k, xi);
 							dyi += get_entry_matrix(eqs, k, nb) * dfi(a, b, nb, k, xi);
