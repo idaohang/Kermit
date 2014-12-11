@@ -18,10 +18,10 @@
  */
 
 double fi(double a, double b, int n, int i, double x) {
-	double		h = (b - a) / (n - 1);
-	double		h3 = h * h * h;
-	int		hi         [5] = {i - 2, i - 1, i, i + 1, i + 2};
-	double		hx      [5];
+	double	h = (b - a) / (n - 1);
+	double	h3 = h * h * h;
+	int		hi[5] = {i - 2, i - 1, i, i + 1, i + 2};
+	double	hx[5];
 	int		j;
 
 	for (j = 0; j < 5; j++)
@@ -41,10 +41,10 @@ double fi(double a, double b, int n, int i, double x) {
 
 /* Pierwsza pochodna fi */
 double dfi(double a, double b, int n, int i, double x) {
-	double		h = (b - a) / (n - 1);
-	double		h3 = h * h * h;
-	int		hi         [5] = {i - 2, i - 1, i, i + 1, i + 2};
-	double		hx      [5];
+	double	h = (b - a) / (n - 1);
+	double	h3 = h * h * h;
+	int		hi[5] = {i - 2, i - 1, i, i + 1, i + 2};
+	double	hx[5];
 	int		j;
 
 	for (j = 0; j < 5; j++)
@@ -64,10 +64,10 @@ double dfi(double a, double b, int n, int i, double x) {
 
 /* Druga pochodna fi */
 double d2fi(double a, double b, int n, int i, double x) {
-	double		h = (b - a) / (n - 1);
-	double		h3 = h * h * h;
-	int		hi         [5] = {i - 2, i - 1, i, i + 1, i + 2};
-	double		hx      [5];
+	double	h = (b - a) / (n - 1);
+	double	h3 = h * h * h;
+	int		hi[5] = {i - 2, i - 1, i, i + 1, i + 2};
+	double	hx[5];
 	int		j;
 
 	for (j = 0; j < 5; j++)
@@ -87,10 +87,10 @@ double d2fi(double a, double b, int n, int i, double x) {
 
 /* Trzecia pochodna fi */
 double d3fi(double a, double b, int n, int i, double x) {
-	double		h = (b - a) / (n - 1);
-	double		h3 = h * h * h;
-	int		hi         [5] = {i - 2, i - 1, i, i + 1, i + 2};
-	double		hx      [5];
+	double	h = (b - a) / (n - 1);
+	double	h3 = h * h * h;
+	int		hi[5] = {i - 2, i - 1, i, i + 1, i + 2};
+	double	hx[5];
 	int		j;
 
 	for (j = 0; j < 5; j++)
@@ -104,7 +104,7 @@ double d3fi(double a, double b, int n, int i, double x) {
 		return -18 / h3;
 	else if (x > hx[2] && x <= hx[3])
 		return 18 / h3;
-	else			/* if (x > hx[3]) && (x <= hx[4]) */
+	else					/* if (x > hx[3]) && (x <= hx[4]) */
 		return -6 / h3;
 }
 
@@ -139,7 +139,7 @@ void make_spl(points_t * pts, spline_t * spl) {
 	double	 b = x[pts->n - 1];
 	int		 i, j, k;
 	int 	 nb = pts->n - 3 > 10 ? 10 : pts->n - 3;
-	char *nbEnv= getenv( "APPROX_BASE_SIZE" );
+	char 	 *nbEnv= getenv( "APPROX_BASE_SIZE" );
 
 	if( nbEnv != NULL && atoi( nbEnv ) > 0 )
 		nb = atoi( nbEnv );
