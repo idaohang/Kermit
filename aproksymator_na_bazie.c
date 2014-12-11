@@ -110,19 +110,21 @@ double d3fi(double a, double b, int n, int i, double x) {
 
 /* Pomocnicza f. do rysowania bazy */
 double xfi(double a, double b, int n, int i, FILE *out) {
-	double		h = (b - a) / (n - 1);
-	double		h3 = h * h * h;
-	int		hi         [5] = {i - 2, i - 1, i, i + 1, i + 2};
-	double		hx      [5];
+	double	h = (b - a) / (n - 1);
+	double	h3 = h * h * h;
+	int		hi[5] = {i - 2, i - 1, i, i + 1, i + 2};
+	double	hx[5];
 	int		j;
 
 	for (j = 0; j < 5; j++)
 		hx[j] = a + h * hi[j];
 
 	fprintf( out, "# nb=%d, i=%d: hi=[", n, i );
+	
 	for( j= 0; j < 5; j++ )
 		fprintf( out, " %d", hi[j] );
 	fprintf( out, "] hx=[" );
+	
 	for( j= 0; j < 5; j++ )
 		fprintf( out, " %g", hx[j] );
 	fprintf( out, "]\n" );
