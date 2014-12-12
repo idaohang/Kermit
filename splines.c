@@ -17,11 +17,11 @@ int alloc_spl (spline_t *spl, int n) {
 
 int read_spl (FILE *inf, spline_t *spl) {
 	int i;
-	if( fscanf (inf, "%d", &(spl->n)) != 1 || spl->n < 0 ) {
+	if( fscanf(inf, "%d", &(spl->n) ) != 1 || spl->n < 0 ) {
 		return 1;
 	}
 
-	if( alloc_spl( spl, spl->n ) ) {
+	if( alloc_spl(spl, spl->n) ) {
 		return 1;
 	}
 

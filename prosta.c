@@ -1,8 +1,8 @@
 #include "makespl.h"
 
-void make_spl (points_t * pts, spline_t * spl) {
+void make_spl (points_t *pts, spline_t *spl) {
 
-	if (pts->n < 2 || alloc_spl (spl, 1)) {
+	if( pts->n < 2 || alloc_spl (spl, 1) ) {
 		spl->n = 0;
 		return;
 	} else {
