@@ -68,8 +68,9 @@ int main (int argc, char **argv) {
 	
 	if( optind < argc ) {
 		fprintf( stderr, "\nBad parameters!\n" );
-		for( ; optind < argc; optind++ )
+		for( ; optind < argc; optind++ ) {
 			fprintf( stderr, "\t\"%s\"\n", argv[optind] );
+		}
 		fprintf( stderr, "\n" );
 		fprintf( stderr, usage, progname );
 		exit( EXIT_FAILURE );
@@ -122,7 +123,7 @@ int main (int argc, char **argv) {
 			exit( EXIT_FAILURE );
 		}
 		
-	} else {			 /* points were not given nor spline was given -> it is an error */
+	} else {			/* points were not given nor spline was given -> it is an error */
 		fprintf( stderr, usage, argv[0] );
 		exit( EXIT_FAILURE );
 	}
@@ -133,7 +134,7 @@ int main (int argc, char **argv) {
 	}
 
 	/* check if plot was requested and generate it if yes */
-	if( gpt != NULL && n > 1 ) { 
+	if( gpt != NULL && n > 1 ) {
 		FILE *gpf = fopen (gpt, "w");
 		int i;
 		double dx;
