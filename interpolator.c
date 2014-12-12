@@ -24,14 +24,19 @@ void make_spl (points_t * pts, spline_t * spl) {
 		put_entry_matrix( eqs, if2, if1, 1 );
 		put_entry_matrix( eqs, if2, if2, dx );
 		put_entry_matrix( eqs, if2, if3, dx*dx/2 );
-		if( if3+1 < n*3 )
+		
+		if( if3+1 < n*3 ) {
 			put_entry_matrix( eqs, if2, if3+1, -1 );
-		else
+		} else {
 			put_entry_matrix( eqs, if2, if1, 0 );
+		}
+		
 		put_entry_matrix( eqs, if3, if2, 1 );
 		put_entry_matrix( eqs, if3, if3, dx );
-		if( if3+2 < n*3 )
+		
+		if( if3+2 < n*3 ) {
 			put_entry_matrix( eqs, if3, if3+2, -1 );
+		}
 	}
 
 #ifdef DEBUG
@@ -47,8 +52,9 @@ void make_spl (points_t * pts, spline_t * spl) {
 	write_matrix( eqs, stdout );
 #endif
 
-  if ( alloc_spl (spl, pts->n) == 0 ) {
-    spl->n = pts->n;
+	if ( alloc_spl (spl, pts->n) == 0 ) {
+		spl->n = pts->n;
+	
 		for( i= 0; i < n; i++ ) {
 			spl->x[i]= pts->x[i];
 			spl->f[i]= pts->y[i];
@@ -56,10 +62,11 @@ void make_spl (points_t * pts, spline_t * spl) {
 			spl->f2[i]= get_entry_matrix( eqs, 3*i+1, 3*n );
 			spl->f3[i]= get_entry_matrix( eqs, 3*i+2, 3*n );
 		}
+	
 		spl->x[n]= pts->x[n];
 		spl->f[n]= pts->y[n];
 		spl->f1[n]= spl->f1[n-1];
 		spl->f2[n]= 0;
 		spl->f3[n]= 0;
-  }
+	}
 }

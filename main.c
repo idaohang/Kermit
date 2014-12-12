@@ -65,6 +65,7 @@ int main (int argc, char **argv) {
 				exit( EXIT_FAILURE );
 		}
 	}
+	
 	if( optind < argc ) {
 		fprintf( stderr, "\nBad parameters!\n" );
 		for( ; optind < argc; optind++ )
