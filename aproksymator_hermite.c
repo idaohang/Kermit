@@ -36,7 +36,7 @@ double d2fi( int n, double x) {
 	else if( n == 1 )
 		return 0;
 	else
-		return 4* dfi( n-1, x ) + 2*x* d2fi( n-1, x ) - 2(n-1)* d2fi( n-2, x);
+		return 4* dfi( n-1, x ) + 2*x* d2fi( n-1, x ) - 2*(n-1)* d2fi( n-2, x);
 }
 
 /* Trzecia pochodna fi */
@@ -47,7 +47,7 @@ double d3fi( int n, double x) {
 	if( n == 1 )
 		return 0;
 	else
-		return 6* d2fi( n-1, x ) + 2*x* d3fi( n-1, x ) - 2(n-1)* d3fi( n-2, x);	
+		return 6* d2fi( n-1, x ) + 2*x* d3fi( n-1, x ) - 2*(n-1)* d3fi( n-2, x);	
 }
 
 
