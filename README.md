@@ -1,4 +1,4 @@
-lmp10_Kermit
+Kermit
 ============
 
 w. Hermite'a
