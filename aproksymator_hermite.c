@@ -12,7 +12,7 @@ double fi( int n, double x) {
 	if( n == 0 )
 		return 1;
 	else if( n == 1)
-		return 2*x
+		return 2*x;
 	else
 		return 2*x * fi( n-1, x ) - 2*(n-1) * fi( n-2, x);
 }
@@ -73,12 +73,12 @@ void make_spl( points_t *pts, spline_t *spl ) {
 		
 		for( i=0; i < nb; i++ ) {
 			for( k=0; k < pts->n; k++ ) {
-				add_to_entry_matrix(eqs, j, i, fi(a, b, nb, i, x[k]) * fi(a, b, nb, j, x[k]));
+				add_to_entry_matrix(eqs, j, i, fi( i, x[k]) * fi( j, x[k]));
 			}
 		}
 
 		for( k=0; k < pts->n; k++ ) {
-			add_to_entry_matrix(eqs, j, nb, y[k] * fi(a, b, nb, j, x[k]));
+			add_to_entry_matrix(eqs, j, nb, y[k] * fi( j, x[k]));
 		}
 	}
 
@@ -100,10 +100,10 @@ void make_spl( points_t *pts, spline_t *spl ) {
 			
 			for( k=0; k < nb; k++ ) {
 				double ck = get_entry_matrix(eqs, k, nb);
-				spl->f[i]  += ck * fi  (a, b, nb, k, xx);
-				spl->f1[i] += ck * dfi (a, b, nb, k, xx);
-				spl->f2[i] += ck * d2fi(a, b, nb, k, xx);
-				spl->f3[i] += ck * d3fi(a, b, nb, k, xx);
+				spl->f[i]  += ck * fi  ( k, xx);
+				spl->f1[i] += ck * dfi ( k, xx);
+				spl->f2[i] += ck * d2fi( k, xx);
+				spl->f3[i] += ck * d3fi( k, xx);
 			}
 		}
 	}
