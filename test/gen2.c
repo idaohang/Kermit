@@ -19,8 +19,8 @@ double fun( double x ) {
 	
 	double r= ((double)rand() - RAND_MAX/2.0)/RAND_MAX/5; /* +-10%  */
 	
-	return (1+r)*( her(0, x) + her(1, x) + her(2, x) + her(3, x) + her(4, x) + her(5, x) +
-				   her(6, x) + her(7, x) + her(8, x) + her(9, x) + her(10, x) + her(11, x) );
+	return (1+r)*( 5*her(0, x) + 4* her(1, x) + 2* her(2, x) + 1*her(3, x) + 0.8*her(4, x) + 0.2*her(5, x) +
+				   1.4*her(6, x) + 0.01*her(7, x) + 0.4*her(8, x) + 0*her(9, x) + 0.1*her(10, x) + 1.1*her(11, x) );
 }
 
 int main( int argc, char **argv ) {
