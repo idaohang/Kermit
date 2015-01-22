@@ -19,7 +19,7 @@ aproksymator_na_bazie.o: makespl.h points.h gaus/piv_ge_solver.h
 interpolator.o: makespl.h points.h gaus/piv_ge_solver.h
 	$(CC) -I gaus -c interpolator.c
 
-.PHONY: clean
+.PHONY: clean test
 
 clean:
 	-rm *.o hermite aprox intrp prosta
